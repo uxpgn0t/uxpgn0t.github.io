@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Portfolio</title>
+<style>
+  /* 星空アニメーション背景 */
+  body {
+    background: black url('https://www.transparenttextures.com/patterns/stardust.png');
+    color: lime;
+    font-family: "Courier New", monospace;
+    max-width: 600px;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 見出しをグリッチ風に */
+  h1 {
+    color: cyan;
+    text-align: center;
+    position: relative;
+    animation: glitch 1s infinite;
+  }
+
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 red, -2px 0 blue; }
+    20% { text-shadow: -2px 0 red, 2px 0 blue; }
+    40% { text-shadow: 2px 0 red, -2px 0 blue; }
+    60% { text-shadow: -2px 0 red, 2px 0 blue; }
+    80% { text-shadow: 2px 0 red, -2px 0 blue; }
+    100% { text-shadow: -2px 0 red, 2px 0 blue; }
+  }
+
+  /* 項目レイアウト */
+  .item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    margin: 15px 0;
+    padding: 5px;
+    border-bottom: 1px dotted lime;
+  }
+
+  .item img {
+    width: 100px;
+    height: 100px;
+    grid-column: 1 / span 2;
+    justify-self: center;
+    margin-bottom: 10px;
+    border: 2px solid cyan;
+    border-radius: 50%;
+  }
+
+  .label {
+    font-weight: bold;
+    color: cyan;
+  }
+
+  a {
+    color: yellow;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: red;
+    text-shadow: 0 0 5px red;
+  }
+</style>
+</head>
+<body>
+
+<h1>My Portfolio</h1>
+
+<div class="item">
+  <img src="icon.jpg" alt="User Icon">
+</div>
+
+<div class="item">
+  <div class="label">Name:</div>
+  <div>Uxpg</div>
+</div>
+
+<div class="item">
+  <div class="label">Role:</div>
+  <div>Cybersecurity</div>
+</div>
+
+<div class="item">
+  <div class="label">Skills:</div>
+  <div>C, Python, Network, etc...</div>
+</div>
+
+<div class="item">
+  <div class="label">HTB rank:</div>
+  <div>Hacker</div>
+</div>
+
+<div class="item">
+  <div class="label">Contact:</div>
+  <div><a href="https://x.com/ux_pancakes" target="_blank">X</a></div>
+</div>
+
+</body>
+</html>
