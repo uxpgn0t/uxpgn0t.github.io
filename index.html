@@ -1,150 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="color-scheme" content="dark" />
-        <title>Profile</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maekawa</title>
+    <style>
+        body {
+            background: #fdfdf8;
+            color: #111;
+            font-family: "Times New Roman", Times, "Georgia", serif;
+            font-size: 17px;
+            line-height: 1.55;
+            max-width: 640px;
+            margin: 50px auto;
+            padding: 0 24px 60px;
+        }
 
-        <style>
-            :root {
-                --bg: #0b0d10;
-                --fg: #e6e8eb;
-                --muted: #9aa1ab;
-                --line: #1b1f26;
-            }
-            * {
-                box-sizing: border-box;
-            }
-            html,
-            body {
-                height: 100%;
-            }
-            body {
-                margin: 0;
-                background: var(--bg);
-                color: var(--fg);
-                font-family:
-                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-                    "Liberation Mono", "Courier New", monospace;
-                letter-spacing: 0.02em;
-            }
-            main {
-                min-height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 32px 18px;
-            }
-            .card {
-                position: relative;
-                width: min(720px, 100%);
-                border: 1px solid var(--line);
-                padding: 28px 26px;
-                background: rgba(255, 255, 255, 0.01);
-            }
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+            margin: 0 0 4px;
+            letter-spacing: 0;
+        }
 
-            .header {
-                margin-bottom: 18px;
-                padding-bottom: 14px;
-                border-bottom: 1px solid var(--line);
+        .handle {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
 
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                gap: 16px;
-            }
+        hr {
+            border: none;
+            border-top: 1px solid #999;
+            margin: 22px 0;
+        }
 
-            .header-text {
-                display: flex;
-                flex-direction: column;
-            }
+        h2 {
+            font-size: 19px;
+            font-weight: bold;
+            margin: 28px 0 10px;
+        }
 
-            .tag {
-                font-size: 12px;
-                color: var(--muted);
-                text-transform: uppercase;
-                letter-spacing: 0.18em;
-            }
+        p {
+            margin: 0 0 12px;
+        }
 
-            /* resume-style photo */
-            .photo {
-                width: 72px;
-                height: 96px;
-                object-fit: cover;
-                border: 1px solid var(--line);
-                background: #000;
-                opacity: 0.9;
-                filter: grayscale(100%) contrast(1.05);
-                flex-shrink: 0;
-            }
+        a {
+            color: #0000ee;
+            text-decoration: underline;
+        }
+        a:visited { color: #551a8b; }
+        a:hover { color: #ee0000; }
 
-            h1 {
-                margin: 15px 0 0;
-                font-size: 25px;
-                font-weight: 600;
-            }
-            p {
-                margin: 0 0 12px 0;
-                color: var(--muted);
-                font-size: 14px;
-                line-height: 1.7;
-            }
-            .mono {
-                margin-top: 16px;
-                padding-top: 14px;
-                border-top: 1px solid var(--line);
-                font-size: 14px;
-                line-height: 1.7;
-                color: var(--fg);
-            }
-            .footer {
-                margin-top: 18px;
-                padding-top: 14px;
-                border-top: 1px solid var(--line);
-                font-size: 12px;
-                color: var(--muted);
-                display: flex;
-                justify-content: space-between;
-            }
-        </style>
-    </head>
+        ul {
+            margin: 6px 0 14px;
+            padding-left: 22px;
+        }
+        li { margin-bottom: 3px; }
 
-    <body>
-        <main>
-            <section class="card" aria-label="Minimal profile">
-                <div class="header">
-                    <div class="header-text">
-                        <div class="tag">Profile</div>
-                        <h1>Maekawa</h1>
-                    </div>
+        .meta {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 13px;
+            color: #555;
+            margin-top: 40px;
+            border-top: 1px solid #999;
+            padding-top: 10px;
+        }
 
-                    <!-- resume-style profile image -->
-                    <img src="anime icon.jpg" alt="profile photo" class="photo" />
-                </div>
+        .sig {
+            font-style: italic;
+            color: #333;
+            margin-top: 24px;
+        }
 
-                <p>
-                    I focus on cybersecurity, with an interest in how systems
-                    behave, fail, and are protected.
-                </p>
+        ::selection { background: #ffe680; }
+    </style>
+</head>
+<body>
+    <h1>Maekawa</h1>
+    <div class="handle">_m4ekawa</div>
 
-                <p>Assembly language is part of my current focus.</p>
+    <hr>
 
-                <div class="mono">
-                    Not obsessed with winning, but focused on not losing.<br />
-                    Have fun.
-                </div>
+    <p>
+        I focus on cybersecurity, with an interest in how systems behave,
+        fail, and are protected.
+    </p>
 
-                <div class="footer">
-                    <span>v1.1</span>
-                    <span id="year">—</span>
-                </div>
-            </section>
-        </main>
+    <p>
+        Assembly language is part of my current focus.
+    </p>
 
-        <script>
-            document.getElementById("year").textContent =
-                new Date().getUTCFullYear();
-        </script>
-    </body>
+    <hr>
+
+    <h2>Topics</h2>
+    <ul>
+        <li>Assembly</li>
+        <li>Reverse engineering</li>
+        <li>Windows internals</li>
+        <li>Malware analysis</li>
+        <li>Offensive security</li>
+    </ul>
+
+    <h2>Elsewhere</h2>
+    <ul>
+        <li><a href="https://x.com/_m4ekawa">x.com/_m4ekawa</a></li>
+    </ul>
+
+    <hr>
+
+    <p class="sig">
+        Not obsessed with winning, but focused on not losing.<br>
+        Have fun.
+    </p>
+
+    <div class="meta">
+        Last modified: <span id="date">—</span>
+    </div>
+
+    <script>
+        const d = new Date();
+        const y = d.getUTCFullYear();
+        const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+        const day = String(d.getUTCDate()).padStart(2, "0");
+        document.getElementById("date").textContent = `${y}-${m}-${day}`;
+    </script>
+</body>
 </html>
