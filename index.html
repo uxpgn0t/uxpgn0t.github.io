@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neul</title>
     <style>
+        :root {
+            --paper: #fbfaf7;
+            --ink: #171717;
+            --muted: #727272;
+            --line: #dedbd4;
+            --soft: #f1eee8;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,91 +20,105 @@
         }
 
         body {
-            background: #0a0a0a;
-            color: #e0e0e0;
-            font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace;
+            min-height: 100vh;
+            background:
+                linear-gradient(90deg, rgba(23, 23, 23, 0.035) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(23, 23, 23, 0.035) 1px, transparent 1px),
+                var(--paper);
+            background-size: 44px 44px;
+            color: var(--ink);
+            font-family: "Yu Gothic UI", "Yu Gothic", "Meiryo", "BIZ UDPGothic", "Noto Sans CJK JP", "Inter", "Segoe UI", sans-serif;
             font-size: 15px;
             line-height: 1.6;
-            min-height: 100vh;
+            letter-spacing: 0;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 40px 24px 60px;
+            padding: 54px 24px 42px;
         }
 
         .header {
-            display: flex;
-            align-items: flex-start;
-            gap: 30px;
-            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: minmax(220px, 350px) 1fr;
+            align-items: end;
+            gap: 42px;
+            min-height: 62vh;
+            margin-bottom: 38px;
         }
 
         .avatar {
-            width: 140px;
-            height: 140px;
-            border-radius: 8px;
+            width: 100%;
+            aspect-ratio: 1;
+            border: 1px solid var(--ink);
+            border-radius: 6px;
             object-fit: cover;
-            border: 2px solid #333;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease, border-color 0.3s ease;
+            filter: grayscale(100%) contrast(1.08) brightness(1.04);
+            box-shadow: 12px 12px 0 var(--ink);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .avatar:hover {
-            filter: grayscale(0%);
-            border-color: #00ff88;
+            transform: translate(-4px, -4px);
+            box-shadow: 16px 16px 0 var(--ink);
         }
 
         .profile {
-            flex: 1;
+            padding-bottom: 4px;
         }
 
         h1 {
-            font-size: 28px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 4px;
-            letter-spacing: -0.5px;
+            color: var(--ink);
+            font-size: clamp(52px, 10vw, 118px);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: 0;
+            margin-bottom: 18px;
         }
 
         .handle {
-            color: #00ff88;
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            margin-bottom: 18px;
+            padding: 6px 14px;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: "SF Mono", Consolas, monospace;
             font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .handle::before {
-            content: "@";
-            opacity: 0.6;
         }
 
         .bio {
-            color: #888;
-            font-size: 14px;
+            max-width: 560px;
+            color: var(--muted);
+            font-size: 16px;
             line-height: 1.7;
         }
 
         .divider {
-            border: none;
             height: 1px;
-            background: linear-gradient(90deg, #333 0%, #1a1a1a 100%);
-            margin: 30px 0;
+            margin: 26px 0 36px;
+            border: none;
+            background: var(--ink);
         }
 
         .section {
-            margin-bottom: 32px;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 28px;
+            margin-bottom: 34px;
         }
 
         h2 {
+            padding-top: 10px;
+            color: var(--ink);
             font-size: 12px;
-            font-weight: 600;
-            color: #555;
+            font-weight: 800;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #222;
         }
 
         .interests {
@@ -106,24 +128,25 @@
         }
 
         .tag {
-            background: #111;
-            border: 1px solid #2a2a2a;
-            color: #aaa;
-            padding: 8px 14px;
+            padding: 9px 14px;
+            border: 1px solid var(--line);
             border-radius: 4px;
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--ink);
             font-size: 13px;
             transition: all 0.2s ease;
         }
 
         .tag:hover {
-            border-color: #00ff88;
-            color: #00ff88;
-            background: rgba(0, 255, 136, 0.05);
+            border-color: var(--ink);
+            background: var(--soft);
+            transform: translateY(-2px);
         }
 
         .tag.highlight {
-            border-color: #00ff88;
-            color: #00ff88;
+            border-color: var(--ink);
+            background: var(--ink);
+            color: var(--paper);
         }
 
         .links {
@@ -133,77 +156,111 @@
         }
 
         a {
-            color: #888;
-            text-decoration: none;
-            transition: color 0.2s ease;
             display: inline-flex;
             align-items: center;
+            width: fit-content;
             gap: 8px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid var(--ink);
+            color: var(--ink);
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
         a:hover {
-            color: #00ff88;
+            color: var(--muted);
         }
 
         a::before {
-            content: "→";
-            opacity: 0.4;
+            content: "->";
+            opacity: 0.5;
             font-size: 12px;
         }
 
         .quote {
+            margin: 38px 0 30px 180px;
+            padding: 18px 0 18px 18px;
+            border-left: 2px solid var(--ink);
+            color: var(--muted);
+            font-size: 15px;
             font-style: italic;
-            color: #555;
-            font-size: 14px;
-            padding-left: 16px;
-            border-left: 2px solid #333;
-            margin: 30px 0;
         }
 
         .footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #222;
-            font-size: 12px;
-            color: #444;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            margin-top: 44px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px;
         }
 
         .terminal-cursor {
             display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: #00ff88;
-            margin-left: 4px;
+            width: 0.36em;
+            height: 0.08em;
+            margin-left: 0.12em;
+            background: var(--ink);
             animation: blink 1s infinite;
+            vertical-align: 0.05em;
         }
 
         @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+            0%, 50% {
+                opacity: 1;
+            }
+
+            51%, 100% {
+                opacity: 0;
+            }
         }
 
         ::selection {
-            background: #00ff88;
-            color: #000;
+            background: var(--ink);
+            color: var(--paper);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 760px) {
+            .container {
+                padding: 28px 18px 34px;
+            }
+
             .header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+                grid-template-columns: 1fr;
+                align-items: start;
+                gap: 30px;
+                min-height: auto;
+                margin-bottom: 30px;
             }
 
             .avatar {
-                width: 120px;
-                height: 120px;
+                max-width: 280px;
+                box-shadow: 8px 8px 0 var(--ink);
             }
 
-            .interests {
-                justify-content: center;
+            h1 {
+                font-size: clamp(50px, 18vw, 82px);
+            }
+
+            .section {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            h2 {
+                padding-top: 0;
+            }
+
+            .quote {
+                margin-left: 0;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
         }
     </style>
@@ -211,10 +268,10 @@
 <body>
     <div class="container">
         <header class="header">
-            <img src="10.jpeg" alt="Avatar" class="avatar">
+            <img src="10.jpeg" alt="Neul avatar" class="avatar">
             <div class="profile">
                 <h1>Neul<span class="terminal-cursor"></span></h1>
-                <div class="handle">_m4ekawa</div>
+                <div class="handle">@Neuljvvq</div>
                 <p class="bio">
                     Cybersecurity enthusiast exploring how systems behave, fail, and are protected.
                     Currently diving deep into low-level programming and security research.
@@ -240,7 +297,7 @@
         <section class="section">
             <h2>Connect</h2>
             <div class="links">
-                <a href="https://x.com/_m4ekawa">x.com/_m4ekawa</a>
+                <a href="https://x.com/Neuljvvq">x.com/Neuljvvq</a>
             </div>
         </section>
 
@@ -250,7 +307,7 @@
         </p>
 
         <footer class="footer">
-            <span>Last modified: <span id="date">—</span></span>
+            <span>Last modified: <span id="date">-</span></span>
             <span>root@neul:~$</span>
         </footer>
     </div>
