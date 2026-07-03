@@ -3,120 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maekawa</title>
+    <title>Neul</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #fdfdf8;
-            color: #111;
-            font-family: "Times New Roman", Times, "Georgia", serif;
-            font-size: 17px;
-            line-height: 1.55;
-            max-width: 640px;
-            margin: 50px auto;
-            padding: 0 24px 60px;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #333;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, border-color 0.3s ease;
+        }
+
+        .avatar:hover {
+            filter: grayscale(0%);
+            border-color: #00ff88;
+        }
+
+        .profile {
+            flex: 1;
         }
 
         h1 {
-            font-size: 26px;
-            font-weight: bold;
-            margin: 0 0 4px;
-            letter-spacing: 0;
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
         }
 
         .handle {
-            color: #555;
-            font-size: 15px;
-            margin-bottom: 18px;
-            font-style: italic;
+            color: #00ff88;
+            font-size: 14px;
+            margin-bottom: 16px;
         }
 
-        hr {
+        .handle::before {
+            content: "@";
+            opacity: 0.6;
+        }
+
+        .bio {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .divider {
             border: none;
-            border-top: 1px solid #999;
-            margin: 22px 0;
+            height: 1px;
+            background: linear-gradient(90deg, #333 0%, #1a1a1a 100%);
+            margin: 30px 0;
+        }
+
+        .section {
+            margin-bottom: 32px;
         }
 
         h2 {
-            font-size: 19px;
-            font-weight: bold;
-            margin: 28px 0 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #222;
         }
 
-        p {
-            margin: 0 0 12px;
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            color: #aaa;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            border-color: #00ff88;
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .tag.highlight {
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         a {
-            color: #0000ee;
-            text-decoration: underline;
-        }
-        a:visited { color: #551a8b; }
-        a:hover { color: #ee0000; }
-
-        ul {
-            margin: 6px 0 14px;
-            padding-left: 22px;
-        }
-        li { margin-bottom: 3px; }
-
-        .meta {
-            font-family: "Courier New", Courier, monospace;
-            font-size: 13px;
-            color: #555;
-            margin-top: 40px;
-            border-top: 1px solid #999;
-            padding-top: 10px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .sig {
+        a:hover {
+            color: #00ff88;
+        }
+
+        a::before {
+            content: "→";
+            opacity: 0.4;
+            font-size: 12px;
+        }
+
+        .quote {
             font-style: italic;
-            color: #333;
-            margin-top: 24px;
+            color: #555;
+            font-size: 14px;
+            padding-left: 16px;
+            border-left: 2px solid #333;
+            margin: 30px 0;
         }
 
-        ::selection { background: #ffe680; }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            font-size: 12px;
+            color: #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: #00ff88;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        ::selection {
+            background: #00ff88;
+            color: #000;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .interests {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Maekawa</h1>
-    <div class="handle">_m4ekawa</div>
+    <div class="container">
+        <header class="header">
+            <img src="10.jpeg" alt="Avatar" class="avatar">
+            <div class="profile">
+                <h1>Neul<span class="terminal-cursor"></span></h1>
+                <div class="handle">_m4ekawa</div>
+                <p class="bio">
+                    Cybersecurity enthusiast exploring how systems behave, fail, and are protected.
+                    Currently diving deep into low-level programming and security research.
+                </p>
+            </div>
+        </header>
 
-    <hr>
+        <hr class="divider">
 
-    <p>
-        I focus on cybersecurity, with an interest in how systems behave,
-        fail, and are protected.
-    </p>
+        <section class="section">
+            <h2>Focus Areas</h2>
+            <div class="interests">
+                <span class="tag highlight">Cybersecurity</span>
+                <span class="tag">Assembly</span>
+                <span class="tag">Reverse Engineering</span>
+                <span class="tag">Windows Internals</span>
+                <span class="tag">Malware Analysis</span>
+                <span class="tag">Offensive Security</span>
+                <span class="tag">Binary Exploitation</span>
+            </div>
+        </section>
 
-    <p>
-        Assembly language is part of my current focus.
-    </p>
+        <section class="section">
+            <h2>Connect</h2>
+            <div class="links">
+                <a href="https://x.com/_m4ekawa">x.com/_m4ekawa</a>
+            </div>
+        </section>
 
-    <hr>
+        <p class="quote">
+            Not obsessed with winning, but focused on not losing.<br>
+            Have fun.
+        </p>
 
-    <h2>Topics</h2>
-    <ul>
-        <li>Assembly</li>
-        <li>Reverse engineering</li>
-        <li>Windows internals</li>
-        <li>Malware analysis</li>
-        <li>Offensive security</li>
-    </ul>
-
-    <h2>Elsewhere</h2>
-    <ul>
-        <li><a href="https://x.com/_m4ekawa">x.com/_m4ekawa</a></li>
-    </ul>
-
-    <hr>
-
-    <p class="sig">
-        Not obsessed with winning, but focused on not losing.<br>
-        Have fun.
-    </p>
-
-    <div class="meta">
-        Last modified: <span id="date">—</span>
+        <footer class="footer">
+            <span>Last modified: <span id="date">—</span></span>
+            <span>root@neul:~$</span>
+        </footer>
     </div>
 
     <script>
